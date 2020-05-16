@@ -8,6 +8,13 @@ import java.util.List;
 
 @Mapper
 public interface CarDao {
+
+    @Select("select * from carMessage where carName like '%${carName}%' limit #{start},#{end}")
+    List<Car> findByFuzzyCarName(String carName, int start, int end);
+
+    @Update("update carMessage set amount = amount- #{amount} where id = #{id}")
+    void buyById(int id, int amount);
+
     @Select("select * from carMessage")
     List<Car> findAll();
 

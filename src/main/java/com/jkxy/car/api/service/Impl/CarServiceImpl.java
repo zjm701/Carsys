@@ -15,6 +15,16 @@ public class CarServiceImpl implements CarService {
     private CarDao carDao;
 
     @Override
+    public List<Car> findByFuzzyCarName(String carName, int start, int end) {
+        return carDao.findByFuzzyCarName(carName, start, end);
+    }
+
+    @Override
+    public void buyById(int id, int amount) {
+        carDao.buyById(id, amount);
+    }
+
+    @Override
     public List<Car> findAll() {
         return carDao.findAll();
     }

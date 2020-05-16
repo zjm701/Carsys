@@ -17,6 +17,41 @@ public class CarController {
     private CarService carService;
 
     /**
+     * 通过车名模糊查询,并且带分页功能
+     *
+     * @param carName
+     * @return
+     */
+    @GetMapping("findByFuzzyCarName/{carName}/{start}/{end}")
+    public JSONResult findByFuzzyCarName(@PathVariable String carName, @PathVariable int start,@PathVariable int end) {
+        List<Car> cars = carService.findByFuzzyCarName(carName,start, end);
+        return JSONResult.ok(cars);
+    }
+
+    /**
+     * 通过车名模糊查询
+     *
+     * @param carName
+     * @return
+     */
+    @GetMapping("findByFuzzyCarName/{carName}")
+    public JSONResult findByFuzzyCarName(@PathVariable String carName) {
+        List<Car> cars = carService.findByFuzzyCarName(carName,0, 10000);
+        return JSONResult.ok(cars);
+    }
+
+    /**
+     * 买车
+     *
+     * @return
+     */
+    @GetMapping("buyById/{id}/{amount}")
+    public JSONResult buyById(@PathVariable int id, @PathVariable int amount) {
+        carService.buyById(id, amount);
+        return JSONResult.ok();
+    }
+
+    /**
      * 查询所有
      *
      * @return
@@ -50,6 +85,7 @@ public class CarController {
         List<Car> cars = carService.findByCarName(carName);
         return JSONResult.ok(cars);
     }
+
 
     /**
      * 通过id删除

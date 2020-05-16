@@ -7,6 +7,10 @@ import java.util.List;
 
 public interface CarService {
 
+    List<Car> findByFuzzyCarName(String carName, int start, int end);
+
+    void buyById(int id, int amount);
+
     List<Car> findAll();
 
     Car findById(int id);
